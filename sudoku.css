@@ -1,9 +1,17 @@
 body{
+    margin: 0;
+    padding: 0;
+}
+section{
     width: 100vw;
-    margin: 0 auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.sudoku-box{
+#sudoku-box{
     width: 450px;
     height: 450px;
     /* border: solid 1px slateblue; */
@@ -11,7 +19,6 @@ body{
     display: grid;
     grid-template-columns: repeat(9, 1fr);
 }
-
 
 .data{
     width: 100%;
@@ -59,13 +66,13 @@ body{
     background-color: paleturquoise;
 }
 
-.option-box{
+#btn-box{
     margin-top: 30px;
     width: 450px;
     text-align: center;
 }
 
-.option-box button{
+#btn-box button{
     all: unset;
     min-width: 100px;
     height: 30px;
@@ -73,7 +80,7 @@ body{
     cursor: pointer;
 }
 
-.option-box button:hover{
+#btn-box button:hover{
     background-color: steelblue;
     color: white;
 }
