@@ -1,0 +1,79 @@
+body{
+    width: 100vw;
+    margin: 0 auto;
+}
+
+.sudoku-box{
+    width: 450px;
+    height: 450px;
+    /* border: solid 1px slateblue; */
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+}
+
+
+.data{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: solid 1px #7a7a7a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.data input{
+    all: unset;
+    width: 100%;
+    height: 100%;
+}
+
+.small-box1{
+    background-color: lightyellow;
+}
+.small-box2{
+    background-color: lightgreen;
+}
+.small-box3{
+    background-color: lightpink;
+}
+.small-box4{
+    background-color: lightskyblue;
+}
+.small-box5{
+    background-color: lightsalmon;
+}
+.small-box6{
+    background-color: lightgoldenrodyellow;
+}
+.small-box7{
+    background-color: wheat;
+}
+.small-box8{
+    background-color: lightcoral;
+}
+.small-box9{
+    background-color: paleturquoise;
+}
+
+.option-box{
+    margin-top: 30px;
+    width: 450px;
+    text-align: center;
+}
+
+.option-box button{
+    all: unset;
+    min-width: 100px;
+    height: 30px;
+    border: solid 1px steelblue;
+    cursor: pointer;
+}
+
+.option-box button:hover{
+    background-color: steelblue;
+    color: white;
+}
