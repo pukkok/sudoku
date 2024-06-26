@@ -11,11 +11,7 @@ function App() {
         <Header/>
         <SudokuBox/>
         <Footer/>
-        <div className="number-box">
-
-        </div>
-    </section>
-
+      </section>
 
     </div>
   )

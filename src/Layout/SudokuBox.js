@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { correctBoardAtom, levelAtom, wrongCountAtom } from '../Recoil/SudokuAtom'
+import { correctBoardAtom, levelAtom, remainingCountsAtom, wrongCountAtom } from '../Recoil/SudokuAtom'
 
 function SudokuBox () {
     const correctBoard = useRecoilValue(correctBoardAtom)
+    const [remainingCounts, setRemainingCounts] = useRecoilState(remainingCountsAtom)
+
     const [blankBoard, setBlankBoard] = useState([])
 
     const level = useRecoilValue(levelAtom)
@@ -24,6 +26,18 @@ function SudokuBox () {
                 blankBoard[x][y] = ''
             }
         }
+        const flattenBlankBoard = blankBoard.reduce((acc, r) => {
+            return acc = [...acc, ...r]
+        },[])
+
+        const remainingCounts = flattenBlankBoard.reduce((acc, r) => {
+            if(!r){
+                return acc
+            }else if(acc[r]){
+                return acc = {...acc, [r] : acc[r]-1}
+            }
+        },{1:9, 2:9, 3:9, 4:9, 5:9, 6:9, 7:9, 8:9, 9:9})
+        setRemainingCounts(remainingCounts)
         return blankBoard
     }
 
@@ -60,20 +74,32 @@ function SudokuBox () {
         }
     },[wrongCount])
 
+    // 다맞추면 승리!
     useEffect(()=>{
+
+
         const keys = Object.keys(answers)
-        if(keys.length === level){
-            const final = keys.filter(key => {
-                const coords = key.split('-')
-                const correct = correctBoard[coords[0]][coords[1]]
-                return +answers[key] === correct
-            })
-            if(final.length === level){
-                alert('승리')
-            }
+        
+        const results = keys.filter(key => {
+            const coords = key.split('-')
+            const correct = correctBoard[coords[0]][coords[1]]
+            return +answers[key] === correct
+        })
+
+        // 남은 개수 체크
+        results.forEach(result => {
+            console.log(remainingCounts[+answers[result]])
+            setRemainingCounts({...remainingCounts, 
+                [+answers[result]] : remainingCounts[+answers[result]] - 1})
+        })
+
+        if(results.length === level){
+            alert('승리')
         }
+        
     },[answers, correctBoard, level])
 
+    // 박스 클릭
     const inputRefs = useRef([])
     const focusInput = (e) => {
         inputRefs.current.forEach(input => {
