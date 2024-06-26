@@ -81,6 +81,26 @@ section{
     color: white;
 }
 
+.number-box{
+    display: flex;
+    gap: 10px;
+}
+.number-box .remain-number{
+    text-align: center;
+}
+
+.number-box .remain-number p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(249, 95, 213, 0.2), rgba(249, 95, 213, 0.2));
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
 @media ( max-width : 768px ) {
     #sudoku-box{
         width: 400px;

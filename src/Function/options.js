@@ -91,6 +91,41 @@ function initNumber (board) {
     startGame()
 })()
 
+let minutes = 0
+let seconds = 0
+const timerStarter = () => {
+    const timer = document.querySelector('.timer')
+    let min
+    let sec
+    setInterval(() => {
+        seconds++
+
+        if(seconds===60){
+            seconds = 0
+            minutes++
+        }
+
+        if(seconds<10){
+            sec = '0' + seconds
+        }else{
+            sec = seconds
+        }
+        
+        if(minutes<10){
+            min = '0' + minutes
+        }else{
+            min = minutes
+        }
+
+        timer.innerText = `${min}:${sec}`
+    }, 1000);
+
+}
+
+timerStarter()
+
+
+
 btnBox.querySelector('button').addEventListener('click', ()=>{
     const newBoard = sudoku()
     const newBlankBoard = makeBlankBoard(newBoard, level.level1)
@@ -104,7 +139,6 @@ function startGame () {
     // 클릭했을때
     const focusInput = (e) => {
         inputs.forEach(input => {
-            
             if( // 같은 라인, 같은 박스
                 input.classList[0].split('-')[0] === e.target.classList[0].split('-')[0] || 
                 input.classList[0].split('-')[1] === e.target.classList[0].split('-')[1] ||
@@ -124,7 +158,9 @@ function startGame () {
             }
         })
     }
-    
+
+    const wrong = document.querySelector('.wrong')
+    let chance = 0
     // 정답 입력할때
     const answerCheck = (e) => {
         if(e.target.value.length>1){
@@ -138,6 +174,11 @@ function startGame () {
             e.target.style.color = 'blue'
         }else{
             e.target.style.color = 'red'
+            chance++
+            wrong.innerText = chance
+            if(+chance === 3){
+                alert('GAME OVER!')
+            }
         }
     }
     
@@ -145,4 +186,16 @@ function startGame () {
         input.addEventListener('click', focusInput)
         input.addEventListener('input', answerCheck)
     })
+    
+    const answerFlatten = answerBoard.reduce((acc, r) => {
+       return acc = [...acc, ...r]
+    },[])
+    const correctStr = answerFlatten.join('')
+    const answerStr = Array.from(inputs).map(input => {
+        return input.value
+    }).join('')
+    
+    if(correctStr === answerStr){
+        alert('완료!')
+    }
 }
