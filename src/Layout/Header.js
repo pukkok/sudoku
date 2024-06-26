@@ -6,6 +6,10 @@ function Header () {
     
     const wrongCount = useRecoilValue(wrongCountAtom)
 
+    const timer = setInterval(() => {
+        
+    }, 1000);
+
     return(
         <>
             <div>timer <span></span></div>
