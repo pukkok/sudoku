@@ -80,3 +80,10 @@ section{
     background-color: steelblue;
     color: white;
 }
+
+@media ( max-width : 768px ) {
+    #sudoku-box{
+        width: 400px;
+        height: 400px;
+    }
+}
