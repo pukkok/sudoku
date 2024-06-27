@@ -11,6 +11,8 @@ function SudokuBox () {
     const [blankBoard, setBlankBoard] = useState([])
     const [answers, setAnwsers] = useRecoilState(answersAtom)
     const [selectedCell, setSelectedCell] = useRecoilState(selectedCellAtom)
+    const [wrongCount, setWrongCount] = useRecoilState(wrongCountAtom)
+
 
     useEffect(()=>{
         const makeBlankBoard = (board, difficulty) => {
@@ -40,24 +42,36 @@ function SudokuBox () {
                 }
             },{1:9, 2:9, 3:9, 4:9, 5:9, 6:9, 7:9, 8:9, 9:9})
             setRemainingCounts(remainingCounts)
+
+            for(let xy in cellRefs.current){
+                cellRefs.current[xy].style.color=''
+                cellRefs.current[xy].style.backgroundImage = ''
+            }
+
             return blankBoard
         }
 
        setBlankBoard(makeBlankBoard(correctBoard, level))
     },[correctBoard, level, setRemainingCounts])
     
-    const [wrongCount, setWrongCount] = useRecoilState(wrongCountAtom)
     
-    // 정답 입력할때
+    // 정답 입력할때(키보드)
     const answerCheck = (e) => {
         let num = switchkey(e.code)
         if(num){
-            setAnwsers({...answers, [selectedCell] : num})
+            
+            if(!cellRefs.current[selectedCell].innerText ||
+                cellRefs.current[selectedCell].style.color === 'red'
+            ){
+                setAnwsers({...answers, [selectedCell] : num})
+            }
+            
+            
+            
         }
     }
 
     useEffect(()=>{
-
         if(selectedCell){
             if(answers[selectedCell]){
                 let num = answers[selectedCell]
@@ -72,7 +86,6 @@ function SudokuBox () {
                 }
             }
         }
-
     },[answers, selectedCell])
 
     // 3번 틀리면 아웃!
@@ -84,19 +97,19 @@ function SudokuBox () {
 
     // 다맞추면 승리!
     useEffect(()=>{
-
-        const keys = Object.keys(answers)
-        
-        const results = keys.filter(key => {
-            const coords = key.split('-')
+        let results = []
+        for(let xy in answers){
+            const coords = xy.split('-')
             const correct = correctBoard[coords[0]][coords[1]]
-            return +answers[key] === correct
-        })
+            if(+answers[xy] === correct){
+                results.push(correct)
+            }
+        }
 
         // 남은 개수 체크
         results.forEach(result => {
             setRemainingCounts({...remainingCounts, 
-                [+answers[result]] : remainingCounts[+answers[result]] - 1})
+                [result] : remainingCounts[result] - 1})
         })
 
         if(results.length === level){
@@ -115,7 +128,6 @@ function SudokuBox () {
         // const colorD = 'rgba(152, 251, 152, 0.8)'
         // const colorE = 'rgba(255, 255, 224, 0.8)'
         setSelectedCell(e.target.dataset.coords)
-        console.log(cellRefs.current)
 
         for(let xy in cellRefs.current){
             if( // 같은 라인, 같은 박스

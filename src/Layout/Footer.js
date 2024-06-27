@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { answersAtom, correctBoardAtom, levelAtom, remainingCountsAtom, selectedCellAtom } from "../Recoil/SudokuAtom";
+import { answersAtom, correctBoardAtom, levelAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from "../Recoil/SudokuAtom";
 import classNames from "classnames";
 import sudoku from "../Function/sudoku";
 
@@ -9,12 +9,16 @@ function Footer () {
     const remainingCounts = useRecoilValue(remainingCountsAtom)
     const remainingCountsEntries = Object.entries(remainingCounts)
     const setCorrectBoard = useSetRecoilState(correctBoardAtom)
+    const setWrongCount = useSetRecoilState(wrongCountAtom)
     const setLevel = useSetRecoilState(levelAtom)
     const [answers, setAnwsers] = useRecoilState(answersAtom)
-    const selectedCell = useRecoilValue(selectedCellAtom)
+    const [selectedCell, setSelectedCell] = useRecoilState(selectedCellAtom)
 
     const newGameStarter = () => {
         setCorrectBoard(sudoku())
+        setAnwsers({})
+        setSelectedCell('')
+        setWrongCount(0)
     }
 
     const levelSelector = (e) => {
