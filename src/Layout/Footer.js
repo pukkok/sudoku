@@ -28,19 +28,6 @@ function Footer () {
 
     return(
         <footer>
-            <div id="btn-box">
-                <button onClick={newGameStarter}>새게임</button>
-                <button >난이도 선택</button>
-            </div>
-            <div className="level-selector" onClick={levelSelector}>
-                <span data-level={10}>순한맛</span>
-                <span data-level={20}>중간맛</span>
-                <span data-level={30}>보통맛</span>
-                <span data-level={40}>매콤한맛</span>
-                <span data-level={50}>핫한맛</span>
-            </div>
-            <br/>
-            <p>남은 개수</p>
             <div className="number-box">
                 {remainingCountsEntries.map((entry,idx)=> {
                     return (
@@ -50,6 +37,16 @@ function Footer () {
                         </div>
                     ) 
                 })}
+            </div>
+            <div id="btn-box">
+                <button onClick={newGameStarter}>새게임</button>
+            </div>
+            <div className="level-selector" onClick={levelSelector}>
+                <span data-level={10}>순한맛</span>
+                <span data-level={20}>중간맛</span>
+                <span data-level={30}>보통맛</span>
+                <span data-level={40}>매콤한맛</span>
+                <span data-level={50}>핫한맛</span>
             </div>
         </footer>
     )

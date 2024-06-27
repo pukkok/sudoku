@@ -93,8 +93,6 @@ function SudokuBox () {
             return +answers[key] === correct
         })
 
-        console.log(results)
-
         // 남은 개수 체크
         results.forEach(result => {
             setRemainingCounts({...remainingCounts, 

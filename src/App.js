@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <div className='container'>
+          <h1>스도쿠 게임</h1>
         <section>
           <Header/>
           <SudokuBox/>
