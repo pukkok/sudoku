@@ -1,22 +1,49 @@
-body{
-    margin: 0;
-    padding: 0;
+.colortester{
+    background-color: rgba(175, 238, 238, 0.8);
+    background-color: rgba(255, 182, 193, 0.8);
+    background-color: rgba(230, 230, 250, 0.8);
+    background-color: rgba(152, 251, 152, 0.8);
+    background-color: rgba(255, 255, 224, 0.8);
 }
+
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
 section{
-    width: 100vw;
-    height: 100vh;
+    margin-top: 10vh;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: 
+    'h o'
+    's o';
+    column-gap: 30px;
+}
+
+header{
+    grid-area: h;
+
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+}
+header p{
+    margin-bottom: 10px;
 }
 
 #sudoku-box{
+    grid-area: s;
+
     width: 600px;
     height: 600px;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+}
+
+footer{
+    grid-area: o;
 }
 
 .cell{
@@ -32,29 +59,28 @@ section{
     overflow: hidden;
 }
 
-.cell input{
-    all: unset;
+.cell span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    border: solid 1px #ececec;
+    border: solid 1px rgba(230, 230, 250, 0.8);
     width: 100%;
     height: 100%;
     cursor: pointer;
-    caret-color: transparent;
-}
-.cell input:focus{
-    caret-color: transparent;
+    outline: none;
 }
 
-.cell.top input{
+.cell.top span{
     border-top: solid 2px #7a7a7a;
 }
-.cell.bottom input{
+.cell.bottom span{
     border-bottom: solid 2px #7a7a7a;
 }
-.cell.left input{
+.cell.left span{
     border-left: solid 2px #7a7a7a;
 }
-.cell.right input{
+.cell.right span{
     border-right: solid 2px #7a7a7a;
 }
 
@@ -84,6 +110,21 @@ section{
     opacity: .8;
 }
 
+.level-selector{
+    margin-top: 10px;
+    padding: 20px;
+    border: solid 1px steelblue;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-selector span{
+    cursor: pointer;
+}
+
+
 .number-box{
     display: flex;
     gap: 10px;
@@ -96,12 +137,13 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(249, 95, 213, 0.2), rgba(249, 95, 213, 0.2));
+    background-image: linear-gradient(rgba(255, 182, 193, 0.6), rgba(255, 182, 193, 0.6));
     width: 60px;
     height: 60px;
     font-size: 24px;
     font-weight: bold;
     border-radius: 12px;
+    cursor: pointer;
 }
 .number-box .remain-number p.finish{
     background-image: linear-gradient(rgba(249, 95, 213, 0.1), rgba(249, 95, 213, 0.1));
@@ -109,8 +151,40 @@ section{
 }
 
 @media ( max-width : 768px ) {
-    #sudoku-box{
-        width: 400px;
-        height: 400px;
+    .container{
+        max-width: 400px;
     }
+
+    section{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 20px;
+        grid-template-areas: 
+        'h'
+        's'
+        'o';
+        column-gap: 0;
+    }
+
+    #sudoku-box{
+        width: 360px;
+        height: 360px;
+    }
+    footer{
+        text-align: center;
+    }
+    .number-box{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+        align-items: center;
+    }
+    .number-box .remain-number{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    
 }

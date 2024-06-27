@@ -26,10 +26,22 @@ const remainingCountsAtom = atom({
     default: {1:9, 2:9, 3:9, 4:9, 5:9, 6:9, 7:9, 8:9, 9:9}
 })
 
+const selectedCellAtom = atom({
+    key: 'selectedCell',
+    default: ''
+})
+
+const answersAtom = atom({
+    key: 'answers',
+    default: {}
+})
+
 export {
     correctBoardAtom,
     timerAtom, 
     wrongCountAtom,
     levelAtom,
-    remainingCountsAtom
+    remainingCountsAtom,
+    selectedCellAtom,
+    answersAtom
 }

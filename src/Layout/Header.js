@@ -11,10 +11,10 @@ function Header () {
     }, 1000);
 
     return(
-        <>
-            <div>timer <span></span></div>
-            <div>틀린 횟수 <span>{wrongCount}/3</span></div>
-        </>
+        <header>
+            <p>기회 <span>{wrongCount}/3</span></p>
+            <p>시간 <span>00 : 00</span></p>
+        </header>
     )
 }
 export default Header

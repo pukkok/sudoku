@@ -5,14 +5,16 @@ import './Layout/sudoku.css'
 import SudokuBox from './Layout/SudokuBox';
 
 function App() {
+
   return (
     <div className="App">
-      <section>
-        <Header/>
-        <SudokuBox/>
-        <Footer/>
-      </section>
-
+      <div className='container'>
+        <section>
+          <Header/>
+          <SudokuBox/>
+          <Footer/>
+        </section>
+      </div>
     </div>
   )
 }
