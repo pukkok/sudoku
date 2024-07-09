@@ -35,11 +35,10 @@ function SudokuBox () {
             },[])
     
             const remainingCounts = flattenBlankBoard.reduce((acc, r) => {
-                if(!r){
-                    return acc
-                }else if(acc[r]){
-                    return acc = {...acc, [r] : acc[r]-1}
+                if(r && acc[r]){
+                    acc = {...acc, [r] : acc[r]-1}
                 }
+                return acc
             },{1:9, 2:9, 3:9, 4:9, 5:9, 6:9, 7:9, 8:9, 9:9})
             setRemainingCounts(remainingCounts)
 
@@ -58,6 +57,11 @@ function SudokuBox () {
     // 정답 입력할때(키보드)
     const answerCheck = (e) => {
         let num = switchkey(e.code)
+        // 비활성화일때 클릭 방지
+        if(remainingCounts[num] === 0){
+            return
+        }
+
         if(num){
             
             if(!cellRefs.current[selectedCell].innerText ||
@@ -65,9 +69,7 @@ function SudokuBox () {
             ){
                 setAnwsers({...answers, [selectedCell] : num})
             }
-            
-            
-            
+                
         }
     }
 

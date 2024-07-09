@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { answersAtom, correctBoardAtom, levelAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from "../Recoil/SudokuAtom";
+import { answersAtom, correctBoardAtom, levelAtom, playTimeAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from "../Recoil/SudokuAtom";
 import classNames from "classnames";
 import sudoku from "../Function/sudoku";
 
@@ -11,6 +11,7 @@ function Footer () {
     const setCorrectBoard = useSetRecoilState(correctBoardAtom)
     const setWrongCount = useSetRecoilState(wrongCountAtom)
     const setLevel = useSetRecoilState(levelAtom)
+    const setPlayTime = useSetRecoilState(playTimeAtom)
     const [answers, setAnwsers] = useRecoilState(answersAtom)
     const [selectedCell, setSelectedCell] = useRecoilState(selectedCellAtom)
 
@@ -19,6 +20,7 @@ function Footer () {
         setAnwsers({})
         setSelectedCell('')
         setWrongCount(0)
+        setPlayTime(0)
     }
 
     const levelSelector = (e) => {
@@ -39,7 +41,7 @@ function Footer () {
                             <p onClick={sendNumber} className={classNames({finish : entry[1] === 0})}>{entry[0]}</p>
                             <span>{entry[1]}</span>
                         </div>
-                    ) 
+                    )
                 })}
             </div>
             <div id="btn-box">
