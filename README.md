@@ -2,7 +2,7 @@
 
 https://pukkok.github.io/sudoku
 
-<img src='public/extra/main.JPG'>
+<img src='public/main.JPG'>
 
 <br><br>
 ## 날짜별 업데이트 내용
