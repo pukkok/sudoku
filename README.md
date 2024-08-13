@@ -1,6 +1,6 @@
 # 스도쿠 
 
-https://pukkok.github.io/sudoku
+[게임하러가기](https://pukkok.github.io/sudoku)
 
 <img src='public/main.JPG'>
 
