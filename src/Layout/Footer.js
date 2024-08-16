@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { answersAtom, correctBoardAtom, levelAtom, playTimeAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from "../Recoil/SudokuAtom";
+import { answersAtom, correctBoardAtom, isPlayAtom, levelAtom, playTimeAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from "../Recoil/SudokuAtom";
 import classNames from "classnames";
 import sudoku from "../Function/sudoku";
 
@@ -14,6 +14,8 @@ function Footer () {
     const setPlayTime = useSetRecoilState(playTimeAtom)
     const [answers, setAnwsers] = useRecoilState(answersAtom)
     const [selectedCell, setSelectedCell] = useRecoilState(selectedCellAtom)
+    const [isPlay, setIsPlay] = useRecoilState(isPlayAtom)
+
 
     const newGameStarter = () => {
         setCorrectBoard(sudoku())
@@ -21,11 +23,15 @@ function Footer () {
         setSelectedCell('')
         setWrongCount(0)
         setPlayTime(0)
+        if(!isPlay){
+            setIsPlay(true)
+        }
     }
 
     const levelSelector = (e) => {
         if(e.target.tagName !== 'SPAN') return
         setLevel(e.target.dataset.level)
+        newGameStarter()
     }
 
     const sendNumber = (e) => {

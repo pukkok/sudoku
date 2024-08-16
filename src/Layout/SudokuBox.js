@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import classnames from 'classnames'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { answersAtom, correctBoardAtom, levelAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from '../Recoil/SudokuAtom'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { answersAtom, correctBoardAtom, isPlayAtom, levelAtom, remainingCountsAtom, selectedCellAtom, wrongCountAtom } from '../Recoil/SudokuAtom'
 import switchkey from '../Function/SwitchKeyNumber'
 
 function SudokuBox () {
@@ -12,7 +12,7 @@ function SudokuBox () {
     const [answers, setAnwsers] = useRecoilState(answersAtom)
     const [selectedCell, setSelectedCell] = useRecoilState(selectedCellAtom)
     const [wrongCount, setWrongCount] = useRecoilState(wrongCountAtom)
-
+    const setIsPlay = useSetRecoilState(isPlayAtom)
 
     useEffect(()=>{
         const makeBlankBoard = (board, difficulty) => {
@@ -116,6 +116,7 @@ function SudokuBox () {
 
         if(results.length === level){
             alert('승리')
+            setIsPlay(false)
         }
         
     },[answers, correctBoard, level])

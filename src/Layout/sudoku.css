@@ -48,6 +48,7 @@ header p{
     text-align: center;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
 }
 
 footer{
@@ -164,7 +165,26 @@ footer{
     color: #c0c0c0;
 }
 
-@media ( max-width : 768px ) {
+@media ( max-width : 1100px ) {
+    .container{
+        max-width: 1100px;
+    }
+
+    header{
+        width: 100%;
+    }
+    #sudoku-box{
+        width: 600px;
+        height: 600px;
+    }
+    .level-selector{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media ( max-width : 924px ) {
     .container{
         max-width: 400px;
     }
@@ -212,5 +232,8 @@ footer{
     .number-box .remain-number span{
         font-size: 12px;
         color: #7a7a7a;
+    }
+    .level-selector{
+        font-size: 14px;
     }
 }

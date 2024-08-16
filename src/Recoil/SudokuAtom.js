@@ -6,6 +6,11 @@ const correctBoardAtom = atom({
     default: sudoku()
 })
 
+const isPlayAtom = atom({
+    key: 'isPlay',
+    default: true
+})
+
 const playTimeAtom = atom({
     key: 'playTime',
     default: 0
@@ -38,7 +43,8 @@ const answersAtom = atom({
 
 export {
     correctBoardAtom,
-    playTimeAtom, 
+    isPlayAtom,
+    playTimeAtom,
     wrongCountAtom,
     levelAtom,
     remainingCountsAtom,
