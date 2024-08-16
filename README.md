@@ -1,11 +1,9 @@
-# 스도쿠 
-
-https://pukkok.github.io/sudoku
+<h2>스도쿠 <a href='https://pukkok.github.io/sudoku'>[게임하러가기]</a></h2> 
 
 <img src='public/main.JPG'>
 
-<br><br>
-## 날짜별 업데이트 내용
+<br>
+<h2> 날짜별 업데이트 내용 </h2>
 <BlockQuote>6/24</BlockQuote>
  
 1. 스도쿠 게임 알고리즘 구현하기
