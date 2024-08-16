@@ -94,6 +94,7 @@ function SudokuBox () {
     useEffect(()=>{
         if(wrongCount === 3){
             alert('GAME OVER!')
+            setIsPlay(false)
         }
     },[wrongCount])
 
