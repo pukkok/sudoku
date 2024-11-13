@@ -28,25 +28,25 @@ const sudoku = () => {
             for (let col = 0; col < gridSize; col++) {
                 if (board[row][col] === 0) {
                     let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9]; // 가능한 숫자들을 배열로 초기화
-                    shuffleArray(nums); // 배열을 랜덤하게 섞음
+                    shuffleArray(nums) // 배열을 랜덤하게 섞음
     
                     for (let i = 0; i < nums.length; i++) {
-                        let num = nums[i];
+                        let num = nums[i]
                         if (isValidSudoku(board, row, col, num)) {
-                            board[row][col] = num;
+                            board[row][col] = num
     
                             if (makeSudoku(board)) {
                                 return true; // 재귀적으로 다음 셀을 진행하고, 가능하면 true 반환
                             }
     
-                            board[row][col] = 0; // Backtrack
+                            board[row][col] = 0 // Backtrack
                         }
                     }
-                    return false; // 현재 셀에 대해 가능한 숫자가 없음
+                    return false // 현재 셀에 대해 가능한 숫자가 없음
                 }
             }
         }
-        return true; // 모든 셀이 채워짐을 반환
+        return true // 모든 셀이 채워짐을 반환
     }
     
     // 배열을 랜덤하게 섞는 함수
