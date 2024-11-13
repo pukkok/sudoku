@@ -1,13 +1,14 @@
 /**
  * 
  * @param {Array} board 
- * @returns 
+ * @returns HTMLTableElement
+ * @description 
+ * 생성된 2차원배열 9 * 9 스도쿠 데이터를 
+ * table을 생성하여 넣는다.
  */
 function buildMatrix (board = []) {
   const table = document.createElement('table')
   const tableBody = document.createElement('tbody')
-
-  let result = ``
 
   const classMaker = (row, col) => {
     let name = 'cell '
@@ -23,16 +24,6 @@ function buildMatrix (board = []) {
     if(6 <= row && row<9 && 6 <= col && col<9) name += 'box9'
 
     return name.trim()
-
-    // {box1: idx1<3 && idx2<3}, 
-    // {box2: idx1<3 && 3<=idx2 && idx2<6}, 
-    // {box3: idx1<3 && 6 <= idx2 && idx2<9},
-		// {box4: 3 <= idx1 && idx1<6 && idx2<3}, 
-    // {box5: 3 <= idx1 && idx1<6 && 3<=idx2 && idx2<6}, 
-    // {box6: 3 <= idx1 && idx1<6 && 6 <= idx2 && idx2<9},
-		// {box7: 6 <= idx1 && idx1<9 && idx2<3}, 
-    // {box8: 6 <= idx1 && idx1<9 && 3<=idx2 && idx2<6}, 
-    // {box9: 6 <= idx1 && idx1<9 && 6 <= idx2 && idx2<9}
   }
 
   board.forEach((xline, row) => {
@@ -40,14 +31,15 @@ function buildMatrix (board = []) {
     let child = ''
     xline.forEach((cell, col) => {
       const name = classMaker(row, col)
-      child += `<td class = "${name}">${cell}</td>`
+      child += `<td 
+      class = "${name}"
+      data-coords = "${row}-${col}"
+      >${cell}</td>`
     })
     tr.innerHTML = child
 
     tableBody.append(tr)
   })
-
-  // tableBody.innerHTML = result
 
   table.append(tableBody)
 
