@@ -6,7 +6,9 @@
  * 생성된 2차원배열 9 * 9 스도쿠 데이터를 
  * table을 생성하여 넣는다.
  */
-function buildMatrix (board = []) {
+function buildMain (board = []) {
+  const main = document.querySelector('main')
+
   const table = document.createElement('table')
   const tableBody = document.createElement('tbody')
 
@@ -43,8 +45,8 @@ function buildMatrix (board = []) {
 
   table.append(tableBody)
 
-  return table
+  main.append(table)
 
 }
 
-export default buildMatrix
+export default buildMain

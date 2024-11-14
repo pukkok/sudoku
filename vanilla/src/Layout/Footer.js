@@ -4,22 +4,19 @@
  * @param {Array} remainBlankCounts 
  */
 function buildFooter (remainBlankCounts = []) {
-  const numberBox = document.createElement('div')
-  numberBox.className = 'number-box'
+  const footer = document.querySelector('footer')
 
-  const numbers = remainBlankCounts.map((count, idx)=> {
+  const numberBox = remainBlankCounts.map((count, idx)=> {
     const cn = count === 0 ? 'finish' : ''
     const div = document.createElement('div')
-    div.className = 'remain-number'
     div.innerHTML = `
-    <p class = "${cn}">${count}</p>
-    <span>${idx+1}</span>
+    <button class = "${cn}">${idx+1}</button>
+    <span>${count}</span>
     `
     return div
   })
-  numberBox.append(...numbers)
-
-  return numberBox
+  footer.innerHTML = ''
+  footer.append(...numberBox)
 }
 
 export default buildFooter

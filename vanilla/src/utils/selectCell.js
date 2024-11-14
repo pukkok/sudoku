@@ -1,6 +1,7 @@
 import switchkey from "../constants/switchkey.js"
+import buildFooter from "../Layout/Footer.js"
 
-function selectedCell (originBoard) {
+function selectedCell (originBoard, remainBlankCounts) {
 
   const table = document.querySelector('table')
   const cells = document.querySelectorAll('td')
@@ -10,7 +11,7 @@ function selectedCell (originBoard) {
   let selectedCoord // 현재 선택한셀의 좌표
 
   // 현재 셀에 값을 넣어서 맞았는지 틀렸는지 확인 한다.
-  window.addEventListener('keyup', (e) => {
+  document.addEventListener('keyup', (e) => {
     const key = switchkey(e.code)
     if(!key) return // 숫자키를 입력하지 않았다면 종료
 
@@ -21,18 +22,21 @@ function selectedCell (originBoard) {
     ) {
       const [row, col] = selectedCoord.split('-')
       currentCell.innerText = key
-
+      
       // 정답을 맞춘 경우
       if(originBoard[row][col] === key){
         currentCell.style.color = 'blue'
+        remainBlankCounts[key-1]--
+        buildFooter(remainBlankCounts)
         selectedNumber = key.toString() // 문자열로 맞춰준다.
         bgChanger()
-
       // 정답을 틀린 경우
       } else {
         currentCell.style.color = 'red'
       }
+      
     }
+    
     
   })
 
@@ -53,6 +57,7 @@ function selectedCell (originBoard) {
    * 
    */
   function bgChanger () {
+    // 맨처음엔 선택하지 않음
     if(!selectedCoord) return
     const [row, col] = selectedCoord.split('-')
     cells.forEach(cell => {
