@@ -1,3 +1,4 @@
+import buildHeader from './Layout/Header.js';
 import buildMain from './Layout/Main.js'
 import buildFooter from './Layout/Footer.js';
 
@@ -5,9 +6,7 @@ import sudoku from './utils/sudoku.js'
 import makeBlankBoard from './utils/level.js'
 import selectedCell from './utils/selectCell.js';
 import extractRemainBlankCount from './utils/remainBlank.js';
-
-const header = document.querySelector('header')
-
+let time = 0
 function starter() {
   // 새로운 보드 생성
   const newBoard = sudoku()
@@ -17,6 +16,7 @@ function starter() {
   const remainBlankCounts = extractRemainBlankCount(blankBoard)
   
   // 스도쿠 박스 레이아웃 생성
+  buildHeader(time)
   buildMain(blankBoard)
   buildFooter(remainBlankCounts)
 
@@ -24,3 +24,8 @@ function starter() {
 }
 
 starter()
+
+const resetBtn = document.getElementById('starter')
+resetBtn.addEventListener('click', () => {
+  starter()
+})

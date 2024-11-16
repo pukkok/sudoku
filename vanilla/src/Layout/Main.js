@@ -8,7 +8,8 @@
  */
 function buildMain (board = []) {
   const main = document.querySelector('main')
-
+  main.innerHTML = ''
+  
   const table = document.createElement('table')
   const tableBody = document.createElement('tbody')
 
@@ -45,6 +46,7 @@ function buildMain (board = []) {
 
   table.append(tableBody)
 
+  
   main.append(table)
 
 }
