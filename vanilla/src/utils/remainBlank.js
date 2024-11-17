@@ -1,4 +1,4 @@
-function extractRemainBlankCount (blankBoard) {
+function extractRemainBlankCount (blankBoard = []) {
 
   // 2차원 배열 평탄화 작업
   const flattenBlankBoard = blankBoard.reduce((acc, r) => {

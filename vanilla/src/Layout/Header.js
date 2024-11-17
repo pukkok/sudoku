@@ -1,8 +1,16 @@
+const remainChance = (chance) => {
+  const chanceP = document.getElementById('chance')
+  const maxChance = 3 // 3회로 고정
+  chanceP.innerHTML = `기회 <span ${chance >= 2 ? 'class=final' : ''}>${chance}/${maxChance}</span>`
+
+  if(chance === maxChance) return false
+}
+
 const gameTimer = (time = 0) => {
   const timerP = document.getElementById('timer')
   let currentTime = timeViewer(time)
 
-  timerP.innerHTML = `시간 : ${currentTime}`
+  timerP.innerHTML = `시간 ${currentTime}`
 }
 
 function timeViewer(time) {
@@ -13,4 +21,4 @@ function timeViewer(time) {
   return `${min}:${sec}`
 }
 
-export {gameTimer}
+export {remainChance, gameTimer}
