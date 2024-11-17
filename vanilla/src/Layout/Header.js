@@ -1,23 +1,8 @@
-const buildHeader = (time= 0) => {
-  const header = document.querySelector('header')
-  header.innerHTML = ''
-  let viewer = null
-  let timer = null
-  
-  timer = setInterval(() => {
-    console.log('동작')
-    viewer = timeViewer(time)
-  }, 1000)
+const gameTimer = (time = 0) => {
+  const timerP = document.getElementById('timer')
+  let currentTime = timeViewer(time)
 
-  const chanceP = document.createElement('p')
-  chanceP.innerText = '기회'
-  const timerP = document.createElement('p')
-  timerP.innerText = `시간 : ${viewer}`
-
-  
-  header.append(chanceP, timerP)
-
-  return header
+  timerP.innerHTML = `시간 : ${currentTime}`
 }
 
 function timeViewer(time) {
@@ -28,4 +13,4 @@ function timeViewer(time) {
   return `${min}:${sec}`
 }
 
-export default buildHeader
+export {gameTimer}
