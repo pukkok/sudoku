@@ -13,14 +13,7 @@ let time = 0
 let timer = null
 
 function starter() {
-  if (timer) { // reset
-    clearInterval(timer) // 기존 타이머 제거
-    timer = null // 기존 타이머 제거
-    time = 0 // 시간 초기화
-    chance = 0 // 기회 초기화
-    remainChance(chance)
-    gameTimer(time) // 초기 UI 갱신
-  }
+  reset()
 
   // 새로운 보드 생성
   const newBoard = sudoku()
@@ -43,5 +36,33 @@ function starter() {
 
 starter()
 
+function reset () {
+  clearInterval(timer) // 기존 타이머 제거
+  timer = null // 기존 타이머 제거
+  time = 0 // 시간 초기화
+  chance = 0 // 기회 초기화
+  remainChance(chance)
+  gameTimer(time) // 초기 UI 갱신
+}
+
+function pause () {
+  if(timer){
+    clearInterval(timer)
+    timer = null
+  } else {
+    timer = setInterval(() => {
+      time++
+      gameTimer(time)
+    }, 1000)
+  }
+}
+
 const resetBtn = document.getElementById('starter')
 resetBtn.addEventListener('click', starter)
+
+const pauseBtn = document.getElementById('pause')
+pauseBtn.addEventListener('click', pause)
+
+var b
+let a
+console.log(a, b)
